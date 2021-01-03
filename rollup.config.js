@@ -1,21 +1,21 @@
 import typescript from 'rollup-plugin-typescript2';
-import pkg from './package.json';
+import { main, module, dependencies, peerDependencies } from './package.json';
 
 export default {
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
+      file: main,
       format: 'cjs',
     },
     {
-      file: pkg.module,
+      file: module,
       format: 'es',
     },
   ],
   external: [
-    ...Object.keys(pkg.dependencies || {}),
-    ...Object.keys(pkg.peerDependencies || {}),
+    ...Object.keys(dependencies || {}),
+    ...Object.keys(peerDependencies || {}),
   ],
   plugins: [
     typescript({
